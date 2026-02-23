@@ -21,7 +21,10 @@ import {
   FaQuoteLeft,
 } from 'react-icons/fa'
 
+import { useDemo } from '@/context/DemoContext'
+
 export default function Home() {
+  const { openDemoModal } = useDemo()
   const featuredServices = services.slice(0, 6)
   const featuredProducts = products.slice(0, 3)
   const featuredBlogs = blogPosts.slice(0, 3)
@@ -44,13 +47,13 @@ export default function Home() {
         }
         buttons={
           <>
-            <Link href="/contact" className="btn-primary">
+            <button onClick={() => openDemoModal()} className="btn-primary">
               Get Started
               <FaArrowRight className="ml-2" />
-            </Link>
-            <Link href="/contact" className="btn-secondary">
+            </button>
+            <button onClick={() => openDemoModal()} className="btn-secondary">
               Contact Sales
-            </Link>
+            </button>
           </>
         }
         stats={[
@@ -201,9 +204,12 @@ export default function Home() {
             <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-4">READY TO SCALE?</h2>
             <p className="text-white/80 font-bold tracking-widest text-sm uppercase">Join 100+ global operators today.</p>
           </div>
-          <Link href="/contact" className="px-12 py-6 bg-white rounded-2xl text-[#050B1B] font-black text-xl hover:scale-105 active:scale-95 transition-all shadow-2xl hover:shadow-white/20">
+          <button
+            onClick={() => openDemoModal()}
+            className="px-12 py-6 bg-white rounded-2xl text-[#050B1B] font-black text-xl hover:scale-105 active:scale-95 transition-all shadow-2xl hover:shadow-white/20"
+          >
             GET STARTED NOW
-          </Link>
+          </button>
         </div>
         {/* Background animated circles */}
         <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-[80px] animate-pulse"></div>

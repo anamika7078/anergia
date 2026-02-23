@@ -1,16 +1,15 @@
-import { Metadata } from 'next'
+'use client'
+
 import Hero from '@/components/Hero'
 import BlogCard from '@/components/BlogCard'
 import Reveal from '@/components/Reveal'
 import { blogPosts } from '@/lib/data'
 import { FaArrowRight, FaNewspaper, FaUsers, FaGlobe, FaLightbulb } from 'react-icons/fa'
-
-export const metadata: Metadata = {
-  title: 'Blog - Anergia',
-  description: 'Latest insights, trends, and updates about iGaming and crypto gaming technology.',
-}
+import { useDemo } from '@/context/DemoContext'
 
 export default function BlogPage() {
+  const { openDemoModal } = useDemo()
+
   return (
     <div className="min-h-screen bg-[#050B1B] pb-16">
       {/* Header */}
@@ -30,9 +29,9 @@ export default function BlogPage() {
               Read Latest
               <FaArrowRight className="ml-2" />
             </a>
-            <a href="#" className="btn-secondary">
+            <button onClick={() => openDemoModal()} className="btn-secondary">
               Subscribe Free
-            </a>
+            </button>
           </>
         }
         stats={[
@@ -115,7 +114,10 @@ export default function BlogPage() {
                   placeholder="OPERATOR_EMAIL@HQ.COM"
                   className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 text-white font-mono text-sm focus:outline-none focus:border-primary-orange transition-colors"
                 />
-                <button className="absolute right-2 top-2 bottom-2 px-6 rounded-xl bg-gradient-to-r from-primary-blue to-primary-orange text-white font-black text-[10px] tracking-widest hover:scale-105 active:scale-95 transition-all shadow-lg">
+                <button
+                  onClick={() => openDemoModal()}
+                  className="absolute right-2 top-2 bottom-2 px-6 rounded-xl bg-gradient-to-r from-primary-blue to-primary-orange text-white font-black text-[10px] tracking-widest hover:scale-105 active:scale-95 transition-all shadow-lg"
+                >
                   CONNECT
                 </button>
               </div>

@@ -7,8 +7,10 @@ import { useState, useEffect } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import clsx from 'clsx'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useDemo } from '@/context/DemoContext'
 
 export default function Navbar() {
+  const { openDemoModal } = useDemo()
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -90,13 +92,13 @@ export default function Navbar() {
             </div>
 
             <div className="ml-6">
-              <Link
-                href="/contact"
+              <button
+                onClick={() => openDemoModal()}
                 className="group relative inline-flex items-center justify-center px-8 py-3 rounded-xl bg-gradient-to-r from-primary-blue to-primary-orange text-white text-xs font-black uppercase tracking-widest transition-all duration-500 hover:shadow-[0_0_30px_rgba(0,82,255,0.4)] active:scale-95 overflow-hidden"
               >
                 <span className="relative z-10">Get Started</span>
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
-              </Link>
+              </button>
             </div>
           </div>
 
@@ -160,13 +162,15 @@ export default function Navbar() {
                 transition={{ delay: 0.3 }}
                 className="pt-6"
               >
-                <Link
-                  href="/contact"
-                  onClick={() => setIsOpen(false)}
+                <button
+                  onClick={() => {
+                    setIsOpen(false)
+                    openDemoModal()
+                  }}
                   className="block w-full py-5 bg-gradient-to-r from-primary-blue to-primary-orange text-white rounded-2xl font-black text-center uppercase tracking-widest text-xs shadow-xl active:scale-95 transition-all"
                 >
                   Get Started
-                </Link>
+                </button>
               </motion.div>
             </div>
           </motion.div>

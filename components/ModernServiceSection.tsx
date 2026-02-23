@@ -11,6 +11,7 @@ import { FaGamepad } from 'react-icons/fa';
 
 const modernServices = [
     {
+        id: 'turnkey-platform',
         title: 'Turnkey iGaming Platform',
         description: 'Complete end-to-end iGaming solution ready for deployment with all essential modules and enterprise-grade features.',
         icon: FaGamepad,
@@ -18,6 +19,7 @@ const modernServices = [
         bgGradient: 'from-[#FF8A00]/20 to-[#FF2D00]/20',
     },
     {
+        id: 'white-label',
         title: 'White-Label Casino Solutions',
         description: 'Fully customizable casino platform with your branding, ready to launch in weeks with comprehensive back-office support.',
         icon: FiLayers,
@@ -25,6 +27,7 @@ const modernServices = [
         bgGradient: 'from-[#FF8A00]/20 to-[#FF2D00]/20',
     },
     {
+        id: 'sportsbook',
         title: 'Sportsbook Betting Engine',
         description: 'Advanced sportsbook platform with real-time odds, live betting coverage, and robust risk management controls.',
         icon: FiActivity,
@@ -32,6 +35,7 @@ const modernServices = [
         bgGradient: 'from-[#FF8A00]/20 to-[#FF2D00]/20',
     },
     {
+        id: 'game-aggregation',
         title: 'Casino Game Aggregation',
         description: 'Access thousands of top-tier casino games from world-leading providers through a single, seamless API integration.',
         icon: FiGrid,
@@ -39,6 +43,7 @@ const modernServices = [
         bgGradient: 'from-[#FF8A00]/20 to-[#FF2D00]/20',
     },
     {
+        id: 'live-dealer',
         title: 'Live Dealer Integration',
         description: 'Immersive real-time gaming experiences with top-tier live dealer studio integrations and high-definition streaming.',
         icon: FiZap,
@@ -46,6 +51,7 @@ const modernServices = [
         bgGradient: 'from-[#FF8A00]/20 to-[#FF2D00]/20',
     },
     {
+        id: 'pam',
         title: 'Player Account Management',
         description: 'Robust PAM system to manage player data, complex transactions, personalized bonuses, and deep loyalty insights.',
         icon: FiUsers,
@@ -54,7 +60,11 @@ const modernServices = [
     },
 ];
 
+import { useDemo } from '@/context/DemoContext'
+
 const ModernServiceSection = () => {
+    const { openDemoModal } = useDemo()
+
     return (
         <section className="py-24 bg-[#050B1B] relative overflow-hidden">
             {/* Background Decorative Elements - Matching Hero Section Theme */}
@@ -84,7 +94,10 @@ const ModernServiceSection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
                     {modernServices.map((service, index) => (
                         <Reveal key={index} delay={index * 0.1}>
-                            <div className="group flex items-start gap-8 transition-all duration-300">
+                            <div
+                                onClick={() => openDemoModal(service.id)}
+                                className="group flex items-start gap-8 transition-all duration-300 cursor-pointer"
+                            >
                                 {/* Icon Container */}
                                 <div className="flex-shrink-0 relative">
                                     <div className={`w-20 h-20 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 relative z-10 transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-[0_0_30px_rgba(255,138,0,0.15)]`}>

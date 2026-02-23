@@ -1,4 +1,5 @@
-import { Metadata } from 'next'
+'use client'
+
 import Hero from '@/components/Hero'
 import ProductCard from '@/components/ProductCard'
 import Reveal from '@/components/Reveal'
@@ -6,13 +7,11 @@ import Link from 'next/link'
 import NextImage from 'next/image'
 import { products } from '@/lib/data'
 import { FaArrowRight, FaUsers, FaChartLine, FaShieldAlt, FaCoins } from 'react-icons/fa'
-
-export const metadata: Metadata = {
-  title: 'Products - Anergia',
-  description: 'Explore our enterprise-grade iGaming and crypto gaming products. Request a demo today.',
-}
+import { useDemo } from '@/context/DemoContext'
 
 export default function ProductsPage() {
+  const { openDemoModal } = useDemo()
+
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -35,9 +34,9 @@ export default function ProductsPage() {
               Browse Products
               <FaArrowRight className="ml-2" />
             </a>
-            <Link href="/contact" className="btn-secondary">
+            <button onClick={() => openDemoModal()} className="btn-secondary">
               Schedule Demo
-            </Link>
+            </button>
           </>
         }
         stats={[
@@ -156,12 +155,12 @@ export default function ProductsPage() {
             </p>
           </Reveal>
           <Reveal variant="scale" delay={0.3}>
-            <Link
-              href="/contact"
+            <button
+              onClick={() => openDemoModal()}
               className="btn-primary px-16 py-8 rounded-[2.5rem] text-2xl"
             >
               REQUEST LIVE DEMO
-            </Link>
+            </button>
           </Reveal>
         </div>
       </section>

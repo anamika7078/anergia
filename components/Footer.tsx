@@ -1,9 +1,13 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import { FaTwitter, FaLinkedin, FaGithub, FaFacebook, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa'
+import { useDemo } from '@/context/DemoContext'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
+  const { openDemoModal } = useDemo()
 
   return (
     <footer className="bg-[#050B1B] text-primary-white border-t border-white/5 relative overflow-hidden pt-24 pb-12">
@@ -92,12 +96,12 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary-orange mb-8">Next Level</h4>
             <p className="text-xs text-slate-500 mb-6 font-medium italic">Ready to launch your empire?</p>
-            <Link
-              href="/contact"
+            <button
+              onClick={() => openDemoModal()}
               className="group relative inline-flex items-center justify-center w-full px-6 py-4 rounded-2xl bg-gradient-to-r from-primary-blue to-primary-orange text-white font-bold transition-all hover:shadow-[0_0_30px_rgba(255,138,0,0.3)] hover:-translate-y-1"
             >
               Get Started Now
-            </Link>
+            </button>
           </div>
         </div>
 

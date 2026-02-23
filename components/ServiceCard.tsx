@@ -12,7 +12,10 @@ interface ServiceCardProps {
   theme?: 'light' | 'dark'
 }
 
+import { useDemo } from '@/context/DemoContext'
+
 export default function ServiceCard({ service, theme = 'dark' }: ServiceCardProps) {
+  const { openDemoModal } = useDemo()
   const Icon = service.icon
   const isDark = theme === 'dark'
   const cardRef = useRef<HTMLDivElement>(null)
@@ -74,22 +77,22 @@ export default function ServiceCard({ service, theme = 'dark' }: ServiceCardProp
         </div>
 
         {/* Hidden Content (Reveals on Hover) */}
-        <div className="max-h-0 group-hover:max-h-[300px] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out overflow-hidden">
+        <div className="max-h-0 group-hover:max-h-[400px] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out overflow-hidden">
           <div className="pt-4 border-t border-white/10">
             <p className="text-slate-300 text-sm leading-relaxed mb-6">
               {service.description}
             </p>
 
-            <Link
-              href="/contact"
+            <button
+              onClick={() => openDemoModal(service.id)}
               className="group/btn relative inline-flex items-center justify-center px-8 py-3 bg-white/5 border border-white/10 rounded-xl font-bold text-white transition-all duration-500 hover:border-transparent overflow-hidden shadow-lg"
             >
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-blue to-primary-orange opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 z-0" />
               <span className="relative z-10 flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] font-black">
                 Request Demo
                 <FaArrowRight size={11} className="group-hover/btn:translate-x-1.5 transition-transform" />
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-blue to-primary-orange opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
-            </Link>
+            </button>
           </div>
         </div>
       </div>

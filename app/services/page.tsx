@@ -7,7 +7,10 @@ import Link from 'next/link'
 import { services } from '@/lib/data'
 import { FaArrowRight, FaGlobe, FaGamepad, FaTrophy, FaServer } from 'react-icons/fa'
 
+import { useDemo } from '@/context/DemoContext'
+
 export default function ServicesPage() {
+  const { openDemoModal } = useDemo()
   const igamingServices = services.filter((s) => s.category === 'igaming')
   const cryptoServices = services.filter((s) => s.category === 'crypto')
 
@@ -33,9 +36,9 @@ export default function ServicesPage() {
               Explore Services
               <FaArrowRight className="ml-2" />
             </a>
-            <Link href="/contact" className="btn-secondary">
+            <button onClick={() => openDemoModal()} className="btn-secondary">
               Talk to an Expert
-            </Link>
+            </button>
           </>
         }
         stats={[
@@ -133,9 +136,12 @@ export default function ServicesPage() {
               </p>
             </Reveal>
             <Reveal delay={0.3}>
-              <Link href="/contact" className="btn-primary px-12 py-6 rounded-2xl text-xl">
+              <button
+                onClick={() => openDemoModal()}
+                className="btn-primary px-12 py-6 rounded-2xl text-xl"
+              >
                 BOOK ARCHITECTURE REVIEW
-              </Link>
+              </button>
             </Reveal>
 
             {/* Decorative Elements */}

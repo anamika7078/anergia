@@ -34,6 +34,8 @@ export const metadata: Metadata = {
   },
 }
 
+import { DemoProvider } from '@/context/DemoProvider'
+
 export default function RootLayout({
   children,
 }: {
@@ -48,11 +50,13 @@ export default function RootLayout({
           <div className="bg-blob-orange" />
         </div>
 
-        <Navbar />
-        <main className="min-h-screen relative z-10">
-          {children}
-        </main>
-        <Footer />
+        <DemoProvider>
+          <Navbar />
+          <main className="min-h-screen relative z-10">
+            {children}
+          </main>
+          <Footer />
+        </DemoProvider>
       </body>
     </html>
   )
